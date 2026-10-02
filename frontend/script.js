@@ -19,7 +19,15 @@ const state = {
 
     language: "en",
 
-    cameraStream: null
+    cameraStream: null,
+
+    currentFile: null,
+
+    apiResult: null,
+
+    apiError: "",
+
+    isAnalyzing: false
 };
 
 
@@ -197,6 +205,30 @@ function Header() {
                         Home
                     </button>
 
+                    <!-- MEDISCAN ADD-ONLY NAV START -->
+
+                    <button
+                        class="nav-btn"
+                        onclick="navigateToSection('aboutSection')"
+                    >
+                        About
+                    </button>
+
+                    <button
+                        class="nav-btn"
+                        onclick="navigateToSection('contactSection')"
+                    >
+                        Contact
+                    </button>
+
+                    <button
+                        class="nav-btn"
+                        onclick="navigateToSection('teamSection')"
+                    >
+                        Team
+                    </button>
+
+                    <!-- MEDISCAN ADD-ONLY NAV END -->
 
                     <button
                         class="nav-btn"
@@ -278,50 +310,854 @@ function Footer() {
     `;
 }
 
+// ============================================================
+// MEDISCAN ADD-ONLY SECTION NAVIGATION
+// ============================================================
+
+function navigateToSection(sectionId) {
+
+    // If currently on result page, return to the first page first.
+    if (state.page !== "upload") {
+
+        state.page = "upload";
+
+        render();
+
+        setTimeout(function() {
+
+            const section =
+                document.getElementById(sectionId);
+
+            if (section) {
+                section.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start"
+                });
+            }
+
+        }, 100);
+
+        return;
+    }
+
+    const section =
+        document.getElementById(sectionId);
+
+    if (section) {
+
+        section.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+        });
+
+    }
+}
+
+
+// === MEDISCAN ADD-ONLY FIRST PAGE FOOTER ===
+
+
+// ============================================================
+// MEDISCAN ADD-ONLY FIRST PAGE SECTIONS
+// ============================================================
+
+function FirstPageExtraSections() {
+
+    return `
+
+        <!-- =========================
+             ABOUT SECTION
+        ========================== -->
+
+        <section
+            class="added-section added-about"
+            id="aboutSection"
+        >
+
+            <div class="container">
+
+                <div class="added-section-heading">
+
+                    <span class="eyebrow">
+                        <span class="eyebrow-dot"></span>
+                        About MediScan
+                    </span>
+
+                    <h2>
+                        Making handwritten prescriptions
+                        easier to understand
+                    </h2>
+
+                    <p>
+                        MediScan is an AI-assisted prescription
+                        handwriting digitization concept designed
+                        to help pharmacy staff review handwritten
+                        prescriptions more efficiently.
+                    </p>
+
+                </div>
+
+                <div class="added-about-grid">
+
+                    <div class="added-info-card">
+
+                        <div class="added-card-icon">
+                            +
+                        </div>
+
+                        <h3>
+                            Smart Digitization
+                        </h3>
+
+                        <p>
+                            Convert difficult handwritten
+                            prescription information into a
+                            clearer digital format.
+                        </p>
+
+                    </div>
+
+
+                    <div class="added-info-card">
+
+                        <div class="added-card-icon">
+                            ✓
+                        </div>
+
+                        <h3>
+                            Pharmacy Friendly
+                        </h3>
+
+                        <p>
+                            Designed around a simple workflow
+                            for reviewing medicines, dosage,
+                            quantity and frequency.
+                        </p>
+
+                    </div>
+
+
+                    <div class="added-info-card">
+
+                        <div class="added-card-icon">
+                            AI
+                        </div>
+
+                        <h3>
+                            AI Assisted
+                        </h3>
+
+                        <p>
+                            The interface highlights uncertain
+                            handwritten information so it can
+                            be checked before use.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             TESTIMONIALS SECTION
+        ========================== -->
+
+        <section
+            class="added-section added-testimonials"
+            id="testimonialsSection"
+        >
+
+            <div class="container">
+
+                <div class="added-section-heading center">
+
+                    <span class="eyebrow">
+                        <span class="eyebrow-dot"></span>
+                        Testimonials
+                    </span>
+
+                    <h2>
+                        What users say about MediScan
+                    </h2>
+
+                    <p>
+                        Simple feedback cards for the MediScan
+                        frontend demonstration.
+                    </p>
+
+                </div>
+
+
+                <div class="testimonial-grid">
+
+                    <div class="testimonial-card">
+
+                        <div class="testimonial-stars">
+                            ★★★★★
+                        </div>
+
+                        <p>
+                            "MediScan makes the prescription
+                            review process much easier and
+                            more organized."
+                        </p>
+
+                        <div class="testimonial-user">
+
+                            <div class="testimonial-avatar">
+                                P
+                            </div>
+
+                            <div>
+                                <strong>
+                                    Pharmacy Staff
+                                </strong>
+
+                                <span>
+                                    MediScan User
+                                </span>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="testimonial-card">
+
+                        <div class="testimonial-stars">
+                            ★★★★★
+                        </div>
+
+                        <p>
+                            "The digital result is easy to read
+                            and the uncertainty warning is a
+                            useful safety-focused feature."
+                        </p>
+
+                        <div class="testimonial-user">
+
+                            <div class="testimonial-avatar">
+                                U
+                            </div>
+
+                            <div>
+                                <strong>
+                                    Healthcare User
+                                </strong>
+
+                                <span>
+                                    MediScan Demo
+                                </span>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="testimonial-card">
+
+                        <div class="testimonial-stars">
+                            ★★★★★
+                        </div>
+
+                        <p>
+                            "A clean and simple interface for
+                            turning handwritten prescription
+                            information into digital data."
+                        </p>
+
+                        <div class="testimonial-user">
+
+                            <div class="testimonial-avatar">
+                                M
+                            </div>
+
+                            <div>
+                                <strong>
+                                    MediScan Team
+                                </strong>
+
+                                <span>
+                                    Project Demo
+                                </span>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             TEAM SECTION
+        ========================== -->
+
+        <!-- =========================
+             CONTACT SECTION
+        ========================== -->
+
+        <section
+            class="added-section added-contact"
+            id="contactSection"
+        >
+
+            <div class="container">
+
+                <div class="contact-card">
+
+                    <div>
+
+                        <span class="eyebrow">
+                            <span class="eyebrow-dot"></span>
+                            Contact
+                        </span>
+
+                        <h2>
+                            Get in touch with MediScan
+                        </h2>
+
+                        <p>
+                            Have a question about the MediScan
+                            project or its pharmacy workflow?
+                            Contact us through the details below.
+                        </p>
+
+                    </div>
+
+
+                    <div class="contact-details">
+
+                        <div class="contact-item">
+
+                            <span>
+                                ✉
+                            </span>
+
+                            <div>
+                                <strong>
+                                    Email
+                                </strong>
+
+                                <p>
+                                    support@mediscan.demo
+                                </p>
+                            </div>
+
+                        </div>
+
+
+                        <div class="contact-item">
+
+                            <span>
+                                ☎
+                            </span>
+
+                            <div>
+                                <strong>
+                                    Phone
+                                </strong>
+
+                                <p>
+                                    +91 90000 00000
+                                </p>
+                            </div>
+
+                        </div>
+
+
+                        <div class="contact-item">
+
+                            <span>
+                                ◉
+                            </span>
+
+                            <div>
+                                <strong>
+                                    Location
+                                </strong>
+
+                                <p>
+                                    India
+                                </p>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+<!-- ==========================================================
+     MEDISCAN TEAM MEMBERS
+     INSIDE EXISTING CONTACT SECTION
+=========================================================== -->
+
+<div class="mediscan-contact-team">
+
+    <div class="contact-team-heading">
+
+        <div>
+            <span class="contact-team-label">
+                OUR TEAM
+            </span>
+
+            <h3>
+                Meet the MediScan Team
+            </h3>
+
+            <p>
+                Connect with the students behind MediScan.
+            </p>
+        </div>
+
+        <span class="contact-team-note">
+            Connect with our team
+        </span>
+
+    </div>
+
+
+    <div class="contact-team-grid">
+
+
+        <!-- ==================================================
+             1. SMRUTI PARIMITA
+        =================================================== -->
+
+        <article class="contact-team-member">
+
+            <img
+                class="contact-team-photo"
+                src="images/smruti.jpeg"
+                alt="Smruti Parimita"
+                loading="lazy"
+            >
+
+            <h4>
+                Smruti Parimita
+            </h4>
+
+            <a
+                href="https://www.linkedin.com/in/smruti-parimita/"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="contact-linkedin"
+            >
+
+                <span class="contact-linkedin-icon">
+                    in
+                </span>
+
+                <span>
+                    LinkedIn Profile
+                </span>
+
+            </a>
+
+            <a
+                href="mailto:smrutiitm061@gmail.com"
+                class="contact-email"
+            >
+
+                <span>
+                    ✉
+                </span>
+
+                <span>
+                    smrutiitm061@gmail.com
+                </span>
+
+            </a>
+
+        </article>
+
+
+        <!-- ==================================================
+             2. SANGITA BHUTIA
+        =================================================== -->
+
+        <article class="contact-team-member">
+
+            <img
+                class="contact-team-photo"
+                src="images/sangita.jpeg"
+                alt="Sangita Bhutia"
+                loading="lazy"
+            >
+
+            <h4>
+                Sangita Bhutia
+            </h4>
+
+            <a
+                href="https://www.linkedin.com/in/sangita-bhutia/"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="contact-linkedin"
+            >
+
+                <span class="contact-linkedin-icon">
+                    in
+                </span>
+
+                <span>
+                    LinkedIn Profile
+                </span>
+
+            </a>
+
+            <a
+                href="mailto:sangitabhutia74@gmail.com"
+                class="contact-email"
+            >
+
+                <span>
+                    ✉
+                </span>
+
+                <span>
+                    sangitabhutia74@gmail.com
+                </span>
+
+            </a>
+
+        </article>
+
+
+        <!-- ==================================================
+             3. SHRABANI BHUTIA
+        =================================================== -->
+
+        <article class="contact-team-member">
+
+            <img
+                class="contact-team-photo"
+                src="images/shrabani.jpeg"
+                alt="Shrabani Bhutia"
+                loading="lazy"
+            >
+
+            <h4>
+                Shrabani Bhutia
+            </h4>
+
+            <a
+                href="https://www.linkedin.com/in/shrabani-bhutia"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="contact-linkedin"
+            >
+
+                <span class="contact-linkedin-icon">
+                    in
+                </span>
+
+                <span>
+                    LinkedIn Profile
+                </span>
+
+            </a>
+
+            <a
+                href="mailto:shrabanibhutia3@gmail.com"
+                class="contact-email"
+            >
+
+                <span>
+                    ✉
+                </span>
+
+                <span>
+                    shrabanibhutia3@gmail.com
+                </span>
+
+            </a>
+
+        </article>
+
+
+        <!-- ==================================================
+             4. SWAPNA PRIYADARSHINI KHATUA
+        =================================================== -->
+
+        <article class="contact-team-member">
+
+            <img
+                class="contact-team-photo"
+                src="images/swapna.jpeg"
+                alt="Swapna Priyadarshini Khatua"
+                loading="lazy"
+            >
+
+            <h4>
+                Swapna Priyadarshini Khatua
+            </h4>
+
+            <a
+                href="https://www.linkedin.com/in/swapna-priyadarshini-khatua"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="contact-linkedin"
+            >
+
+                <span class="contact-linkedin-icon">
+                    in
+                </span>
+
+                <span>
+                    LinkedIn Profile
+                </span>
+
+            </a>
+
+            <a
+                href="mailto:swapnapriyadarshinikhatu@gmail.com"
+                class="contact-email"
+            >
+
+                <span>
+                    ✉
+                </span>
+
+                <span>
+                    swapnapriyadarshinikhatu@gmail.com
+                </span>
+
+            </a>
+
+        </article>
+
+
+        <!-- ==================================================
+             5. PRATIKHYA PANY
+        =================================================== -->
+
+        <article class="contact-team-member">
+
+            <img
+                class="contact-team-photo"
+                src="images/pratikhya.jpeg"
+                alt="Pratikhya Pany"
+                loading="lazy"
+            >
+
+            <h4>
+                Pratikhya Pany
+            </h4>
+
+            <a
+                href="https://www.linkedin.com/in/pratikhya-pany"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="contact-linkedin"
+            >
+
+                <span class="contact-linkedin-icon">
+                    in
+                </span>
+
+                <span>
+                    LinkedIn Profile
+                </span>
+
+            </a>
+
+            <a
+                href="mailto:pratikhyapany2006@gmail.com"
+                class="contact-email"
+            >
+
+                <span>
+                    ✉
+                </span>
+
+                <span>
+                    pratikhyapany2006@gmail.com
+                </span>
+
+            </a>
+
+        </article>
+
+
+    </div>
+
+</div>
+
+<!-- ==========================================================
+     END MEDISCAN TEAM MEMBERS
+=========================================================== -->
+
+
+</div>
+
+        </section>
+
+    `;
+}
+
+
+function HomePageFooter() {
+
+    return `
+
+        <!-- =========================
+             FIRST PAGE FOOTER
+        ========================== -->
+
+        <footer
+            class="added-footer"
+            id="footerSection"
+        >
+
+            <div class="container">
+
+                <div class="added-footer-grid">
+
+                    <div class="added-footer-brand">
+
+                        <div class="logo">
+
+                            <span class="logo-icon">
+                                +
+                            </span>
+
+                            <span>
+                                MediScan
+                            </span>
+
+                        </div>
+
+                        <p>
+                            AI-assisted prescription
+                            digitization for pharmacy
+                            workflows.
+                        </p>
+
+                    </div>
+
+
+                    <div class="added-footer-column">
+
+                        <h3>
+                            About
+                        </h3>
+
+                        <a
+                            href="#aboutSection"
+                            onclick="
+                                navigateToSection('aboutSection');
+                                return false;
+                            "
+                        >
+                            About MediScan
+                        </a>
+
+                        <a
+                            href="#testimonialsSection"
+                            onclick="
+                                navigateToSection('testimonialsSection');
+                                return false;
+                            "
+                        >
+                            Testimonials
+                        </a>
+
+                    </div>
+
+
+                    <div class="added-footer-column">
+
+                        <h3>
+                            Contact
+                        </h3>
+
+                        <a
+                            href="#contactSection"
+                            onclick="
+                                navigateToSection('contactSection');
+                                return false;
+                            "
+                        >
+                            Contact Us
+                        </a>
+
+                        <a
+                            href="#teamSection"
+                            onclick="
+                                navigateToSection('teamSection');
+                                return false;
+                            "
+                        >
+                            Team
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+                <div class="added-footer-bottom">
+
+                    <span>
+                        © 2026 MediScan. All rights reserved.
+                    </span>
+
+                    <span>
+                        Prescription Digitization Demo
+                    </span>
+
+                </div>
+
+            </div>
+
+        </footer>
+
+    `;
+}
 
 /* ==========================================================
    AI VIDEO COMPONENT
 ========================================================== */
 
-
-
 function AIVideo() {
+
     return `
-        <div class="ai-video">
 
-            <div class="video-screen">
+    <section class="home-section">
 
-                <!-- Uploaded AI Video -->
-                <video
-                    class="medi-scan-video"
-                    autoplay
-                    muted
-                    loop
-                    playsinline
-                    controls
-                >
-                    <source src="WhatsApp Video 2026-09-27 at 8.11.12 PM(1).mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
+    <!-- EXISTING LEFT SIDE CONTENT -->
+    <div class="home-left">
 
-                <!-- AI Label -->
-                <div class="ai-label">
-                    <span class="ai-dot"></span>
-                    AI Video
-                </div>
+    <!-- NEW RIGHT SIDE VIDEO -->
+    <div class="home-right-video">
 
-                <!-- Text Overlay -->
-                <div class="ai-video-text">
-                    <h3>Scan → Read → Digitize</h3>
-                    <p>
-                        AI-assisted scanning visual for
-                        the MediScan pharmacy workflow.
-                    </p>
-                </div>
+        <video
+            class="mediscan-home-video"
+            autoplay
+            muted
+            loop
+            playsinline
+            preload="auto">
 
-            </div>
+            <source src="mediscan_video.mp4" type="video/mp4">
 
-        </div>
+        </video>
+
+    </div>
+
+</section>
     `;
 }
 
@@ -369,8 +1205,6 @@ function UploadArea() {
                         </span>
 
                     </div>
-
-
 
                     <div class="upload-grid">
 
@@ -422,8 +1256,6 @@ function UploadArea() {
                                 hidden
                             >
 
-
-
                             <!-- CAMERA -->
 
                             <div class="camera-panel">
@@ -462,8 +1294,6 @@ function UploadArea() {
                             ></div>
 
                         </div>
-
-
 
                         <!-- PREVIEW -->
 
@@ -513,8 +1343,6 @@ function UploadArea() {
                         </div>
 
                     </div>
-
-
 
                     <div
                         style="
@@ -680,11 +1508,15 @@ function UploadPage() {
 
                 ${UploadArea()}
 
+${TeamSection()}
+
 
             </main>
 
 
-            ${Footer()}
+            ${FirstPageExtraSections()}
+
+            ${HomePageFooter()}
 
         </div>
 
@@ -696,11 +1528,14 @@ function UploadPage() {
    RESULT PAGE
 ========================================================== */
 
+function getCurrentResultData() {
+    return state.apiResult || prescriptionData[state.language];
+}
+
 function ResultPage() {
 
     const data =
-        state.apiResult ||
-        prescriptionData[state.language];
+        getCurrentResultData();
 
 
     const image =
@@ -740,7 +1575,11 @@ function ResultPage() {
 
                                 <span class="eyebrow-dot"></span>
 
-                                AI analysis complete
+                                ${state.isAnalyzing
+                                    ? "Analyzing prescription"
+                                    : state.apiError
+                                        ? "Analysis unavailable"
+                                        : "AI analysis complete"}
 
                             </span>
 
@@ -756,8 +1595,6 @@ function ResultPage() {
                             </p>
 
                         </div>
-
-
 
                         <div class="result-grid">
 
@@ -790,8 +1627,6 @@ function ResultPage() {
 
                             </div>
 
-
-
                             <!-- DIGITAL RESULT -->
 
                             <div class="result-card">
@@ -799,6 +1634,7 @@ function ResultPage() {
                                 <div
                                     id="processing"
                                     class="processing"
+                                    style="display:${state.isAnalyzing ? "flex" : "none"};"
                                 >
 
                                     <span class="spinner"></span>
@@ -809,10 +1645,15 @@ function ResultPage() {
 
                                 </div>
 
+                                ${state.apiError ? `
+                                    <div class="warning" role="alert">
+                                        ${escapeHTML(state.apiError)}
+                                    </div>
+                                ` : ""}
 
                                 <div
                                     id="resultContent"
-                                    style="display:none;"
+                                    style="display:${state.isAnalyzing || state.apiError ? "none" : "block"};"
                                 >
 
                                     <div class="result-top">
@@ -824,11 +1665,10 @@ function ResultPage() {
                                             </h2>
 
                                             <p>
-                                                ${state.isLiveBackend
-                                                    ? `<span style="color:#087f8c; font-weight:700;">🟢 Live AI Model (CRNN + CTC)</span>`
-                                                    : `Demo AI Output`}
+                                                ${state.apiResult
+                                                    ? "Live results from the MediScan backend"
+                                                    : "Mock AI output for frontend demonstration"}
                                             </p>
-                                            ${data.raw_text ? `<p style="font-size:0.85rem; color:#4a5568; margin-top:6px;"><strong>Recognized Text:</strong> <code style="background:#eef6f6; color:#05636e; padding:3px 8px; border-radius:4px; font-weight:bold;">${escapeHTML(data.raw_text)}</code></p>` : ""}
 
                                         </div>
 
@@ -861,8 +1701,6 @@ function ResultPage() {
                                         </div>
 
                                     </div>
-
-
 
                                     <!-- PATIENT INFO -->
 
@@ -921,8 +1759,6 @@ function ResultPage() {
 
                                     </div>
 
-
-
                                     <!-- SUMMARY -->
 
                                     <div class="description">
@@ -930,8 +1766,6 @@ function ResultPage() {
                                         ${escapeHTML(data.summary)}
 
                                     </div>
-
-
 
                                     <!-- MEDICINE TABLE -->
 
@@ -1034,8 +1868,6 @@ function ResultPage() {
 
                                     </div>
 
-
-
                                     <!-- WARNING -->
 
                                     <div class="warning">
@@ -1048,8 +1880,6 @@ function ResultPage() {
 
                                     </div>
 
-
-
                                     <!-- DETAILS -->
 
                                     <div class="description">
@@ -1059,8 +1889,6 @@ function ResultPage() {
                                         )}
 
                                     </div>
-
-
 
                                     <!-- ACTIONS -->
 
@@ -1304,9 +2132,15 @@ function processFile(file) {
 
             state.imageName =
                 file.name;
-            state.currentFile = file;
-            state.apiResult = null;
-            state.isLiveBackend = false;
+
+            state.currentFile =
+                file;
+
+            state.apiResult =
+                null;
+
+            state.apiError =
+                "";
 
 
             updatePreview(
@@ -1469,52 +2303,6 @@ function restorePreview() {
    CONTINUE
 ========================================================== */
 
-
-/* ==========================================================
-   BACKEND API INTEGRATION
-========================================================== */
-
-// Set this to your deployed Render URL once deployed (e.g., "https://mediscan-backend.onrender.com")
-const PRODUCTION_BACKEND_URL = "https://mediscan-a573.onrender.com";
-
-const API_BASE_URL =
-    (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1")
-        ? "http://localhost:5000"
-        : (PRODUCTION_BACKEND_URL || window.location.origin);
-
-async function sendPrescriptionToBackend(fileOrDataUrl) {
-    try {
-        const formData = new FormData();
-        if (state.currentFile) {
-            formData.append("file", state.currentFile);
-        } else if (state.imageData) {
-            // Convert data URL to blob
-            const response = await fetch(state.imageData);
-            const blob = await response.blob();
-            formData.append("file", blob, state.imageName || "prescription.png");
-        } else {
-            return null;
-        }
-
-        const res = await fetch(`${API_BASE_URL}/upload`, {
-            method: "POST",
-            body: formData
-        });
-
-        if (!res.ok) {
-            console.warn("Backend responded with status:", res.status);
-            return null;
-        }
-
-        const data = await res.json();
-        console.log("Prescription upload response from backend:", data);
-        return data;
-    } catch (err) {
-        console.info("Backend server not reachable at http://localhost:5000. Running in demo client mode.");
-        return null;
-    }
-}
-
 async function continueToResult() {
 
     if (!state.imageData) {
@@ -1527,9 +2315,12 @@ async function continueToResult() {
 
     }
 
+
     state.page = "result";
     state.isAnalyzing = true;
     state.apiResult = null;
+    state.apiError = "";
+
     render();
 
     window.scrollTo({
@@ -1538,26 +2329,68 @@ async function continueToResult() {
     });
 
     try {
-        const response = await sendPrescriptionToBackend();
-        if (response && response.success && response.prescription_data) {
-            state.apiResult = response.prescription_data;
-            state.isLiveBackend = true;
-            showToast("Prescription digitized with Live CRNN Model!");
-        } else {
-            state.isLiveBackend = false;
+        const file = state.currentFile || await imageDataToFile(
+            state.imageData,
+            state.imageName || "prescription.png"
+        );
+        const formData = new FormData();
+        formData.append("file", file, state.imageName || "prescription.png");
+
+        let response;
+        // Render may fail the first request while the OCR model is loading.
+        for (let attempt = 0; attempt < 2; attempt += 1) {
+            try {
+                response = await fetch("https://mediscan-a573.onrender.com/upload", {
+                    method: "POST",
+                    body: formData
+                });
+            } catch {
+                if (attempt === 1) {
+                    throw new Error(
+                        "The backend did not respond. It may still be starting; please try again."
+                    );
+                }
+                await new Promise(resolve => setTimeout(resolve, 1000));
+                continue;
+            }
+
+            if (response.status < 500 || attempt === 1) {
+                break;
+            }
+
+            await new Promise(resolve => setTimeout(resolve, 1000));
         }
-    } catch (e) {
-        console.warn("Backend error, falling back to demo:", e);
-        state.isLiveBackend = false;
+
+        let result;
+        try {
+            result = await response.json();
+        } catch {
+            throw new Error(response.ok
+                ? "The backend returned an invalid response."
+                : `Backend request failed (${response.status}).`);
+        }
+
+        if (!response.ok || !result || !result.success || !result.prescription_data) {
+            throw new Error((result && result.error) || `Backend request failed (${response.status}).`);
+        }
+
+        state.apiResult = result.prescription_data;
+    } catch (error) {
+        console.error("Prescription upload failed:", error);
+        state.apiError = error instanceof Error
+            ? error.message
+            : "Could not connect to the prescription service. Please try again.";
     } finally {
         state.isAnalyzing = false;
         render();
-        const proc = document.getElementById("processing");
-        const cont = document.getElementById("resultContent");
-        if (proc) proc.style.display = "none";
-        if (cont) cont.style.display = "block";
     }
 
+}
+
+async function imageDataToFile(dataUrl, filename) {
+    const response = await fetch(dataUrl);
+    const blob = await response.blob();
+    return new File([blob], filename, { type: blob.type || "image/png" });
 }
 
 
@@ -1578,16 +2411,12 @@ function startAIProcessing() {
             "resultContent"
         );
 
-    if (!processing || !content) return;
 
-    if (!state.isAnalyzing) {
-        processing.style.display = "none";
-        content.style.display = "block";
-        return;
-    }
+    processing.style.display =
+        state.isAnalyzing ? "flex" : "none";
 
-    processing.style.display = "flex";
-    content.style.display = "none";
+    content.style.display =
+        state.isAnalyzing || state.apiError ? "none" : "block";
 
 }
 
@@ -1613,8 +2442,9 @@ function changeLanguage(language) {
 
 function showDemoResult() {
 
-    // Trigger backend upload in background if available
-    sendPrescriptionToBackend();
+    state.apiResult = null;
+    state.apiError = "";
+    state.isAnalyzing = false;
 
     state.page =
         "result";
@@ -1639,6 +2469,9 @@ function goHome() {
 
     stopCamera();
 
+    state.apiResult = null;
+    state.apiError = "";
+    state.isAnalyzing = false;
 
     state.page =
         "upload";
@@ -1861,6 +2694,14 @@ function capturePhoto() {
                     state.imageName =
                         "camera-prescription.jpg";
 
+                    state.currentFile =
+                        new File([blob], state.imageName, { type: "image/jpeg" });
+
+                    state.apiResult =
+                        null;
+
+                    state.apiError =
+                        "";
 
                     closeCamera();
 
@@ -1941,9 +2782,7 @@ function stopCamera() {
 async function copyResult() {
 
     const data =
-        prescriptionData[
-            state.language
-        ];
+        getCurrentResultData();
 
 
     let text =
@@ -2022,9 +2861,7 @@ async function copyResult() {
 function downloadResult() {
 
     const data =
-        prescriptionData[
-            state.language
-        ];
+        getCurrentResultData();
 
 
     let text =
@@ -2136,9 +2973,7 @@ function downloadResult() {
 function editResult() {
 
     const data =
-        prescriptionData[
-            state.language
-        ];
+        getCurrentResultData();
 
 
     const newName =
@@ -2456,3 +3291,116 @@ function showToast(message) {
 ========================================================== */
 
 render();
+
+
+/* MEDISCAN TEAM SECTION - ADD ONLY */
+
+
+/* ============================================================
+   MEDISCAN TEAM SECTION
+============================================================ */
+
+function TeamSection() {
+
+    const students = [
+        {
+            name: "Smruti Parimita",
+            image: "images/smruti.jpeg",
+            role: "Dataset Loading & Pre-processing",
+            description:
+                "Loads, organizes and prepares prescription datasets " +
+                "for machine learning."
+        },
+        {
+            name: "Sangita Bhutia",
+            image: "images/sangita.jpeg",
+            role: "Machine Learning Model",
+            description:
+                "Develops the machine learning model for recognizing " +
+                "handwritten prescription information."
+        },
+        {
+            name: "Shrabani Bhutia",
+            image: "images/shrabani.jpeg",
+            role: "Python Backend Development",
+            description:
+                "Develops the Python backend to process prescription " +
+                "data and connect the application components."
+        },
+        {
+            name: "Swapna Priyadarsini Khatua",
+            image: "images/swapna.jpeg",
+            role: "Testing & Quality Assurance",
+            description:
+                "Tests the application, identifies errors and checks " +
+                "whether its features work correctly."
+        },
+        {
+            name: "Pratikhya Pany",
+            image: "images/pratikhya.jpeg",
+            role: "Frontend & UI Designing",
+            description:
+                "Designs the website interface and develops a " +
+                "responsive, user-friendly frontend."
+        }
+    ];
+
+    return `
+        <section class="mediscan-team" id="teamSection">
+
+            <div class="container">
+
+                <div class="team-heading">
+
+                    <span class="team-eyebrow">
+                        MEET OUR TEAM
+                    </span>
+
+                    <h2>Meet the MediScan Team</h2>
+
+                    <p>
+                        Meet the students behind MediScan and
+                        discover their contributions to our project.
+                    </p>
+
+                </div>
+
+                <div class="team-grid">
+
+                    ${students.map((student, index) => `
+                        <article class="student-card">
+
+                            <div class="student-photo">
+
+                                <img
+                                    src="${student.image}"
+                                    alt="${student.name}"
+                                    loading="lazy"
+                                >
+
+                            </div>
+
+                            <span class="student-number">
+                                STUDENT 0${index + 1}
+                            </span>
+
+                            <h3>${student.name}</h3>
+
+                            <span class="student-role">
+                                ${student.role}
+                            </span>
+
+                            <p class="student-description">
+                                ${student.description}
+                            </p>
+
+                        </article>
+                    `).join("")}
+
+                </div>
+
+            </div>
+
+        </section>
+    `;
+}

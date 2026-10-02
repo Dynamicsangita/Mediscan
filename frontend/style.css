@@ -384,103 +384,143 @@ a {
    AI VIDEO
 ========================= */
 
-.ai-video {
-    min-height: 490px;
+/* =========================================
+   MEDISCAN HOME PAGE - RIGHT SIDE VIDEO
+   ========================================= */
 
-    padding: 14px;
+.home-section {
+    width: 100%;
+    min-height: calc(100vh - 80px);
 
-    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 
-    background: white;
+    padding: 70px 6%;
+    gap: 50px;
 
-    border: 1px solid var(--border);
-
-    box-shadow: var(--shadow);
+    box-sizing: border-box;
 }
 
-.video-screen {
-    height: 100%;
 
-    min-height: 460px;
+/* LEFT SIDE - EXISTING CONTENT */
 
-    border-radius: 23px;
+.home-left {
+    width: 150%;
+    max-width: 650px;
+    z-index: 2;
+}
+
+
+/* RIGHT SIDE VIDEO */
+
+.home-right-video {
+    width: 80%;
+    height: 500px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     overflow: hidden;
+    border-radius: 28px;
 
     position: relative;
 
-    background:
-        linear-gradient(
-            rgba(4,67,76,0.18),
-            rgba(4,67,76,0.55)
-        ),
-        linear-gradient(
-            135deg,
-            #dff9f8,
-            #edf8f7,
-            #c9e9e8
-        );
+    background: #eaf8f8;
+
+    box-shadow:
+        0 20px 50px rgba(0, 80, 90, 0.15);
 }
 
-.grid-background {
+
+/* VIDEO */
+
+.mediscan-home-video {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+
+    border-radius: 28px;
+}
+
+
+/* SOFT OVERLAY FOR PROFESSIONAL LOOK */
+
+.home-right-video::after {
+    content: "";
+
     position: absolute;
 
     inset: 0;
 
-    opacity: 0.2;
+    background: linear-gradient(
+        90deg,
+        rgba(255,255,255,0.05),
+        rgba(0,150,160,0.05)
+    );
 
-    background-image:
-        linear-gradient(
-            rgba(255,255,255,0.5) 1px,
-            transparent 1px
-        ),
-        linear-gradient(
-            90deg,
-            rgba(255,255,255,0.5) 1px,
-            transparent 1px
-        );
-
-    background-size: 36px 36px;
+    pointer-events: none;
 }
 
-.ai-label {
-    position: absolute;
 
-    top: 22px;
-    left: 22px;
+/* =========================================
+   TABLET
+   ========================================= */
 
-    display: flex;
+@media (max-width: 1000px) {
 
-    align-items: center;
+    .home-section {
+        padding: 60px 5%;
+        gap: 30px;
+    }
 
-    gap: 7px;
+    .home-left {
+        width: 50%;
+    }
 
-    color: white;
-
-    background: rgba(6,55,63,0.7);
-
-    padding: 8px 12px;
-
-    border-radius: 50px;
-
-    font-size: 12px;
-
-    font-weight: 700;
-
-    backdrop-filter: blur(8px);
+    .home-right-video {
+        width: 50%;
+        height: 430px;
+    }
 }
 
-.ai-dot {
-    width: 7px;
-    height: 7px;
 
-    border-radius: 50%;
+/* =========================================
+   MOBILE
+   ========================================= */
 
-    background: #74f2d7;
+@media (max-width: 768px) {
 
-    animation: pulse 1.5s infinite;
+    .home-section {
+        flex-direction: column;
+
+        padding: 50px 6%;
+
+        min-height: auto;
+    }
+
+    .home-left {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .home-right-video {
+        width: 100%;
+        height: 350px;
+
+        margin-top: 30px;
+
+        border-radius: 22px;
+    }
+
+    .mediscan-home-video {
+        border-radius: 22px;
+    }
 }
-
 
 /* Prescription animation */
 
@@ -1636,13 +1676,1757 @@ a {
 }
 
 /* ==========================================================
-   AI VIDEO COMPONENT STYLES
+   MEDISCAN ADD-ONLY SECTIONS
+
+
+/* ==========================================================
+   MEDISCAN ADD-ONLY SECTIONS
+   Existing CSS above remains unchanged.
 ========================================================== */
-.medi-scan-video {
+
+.added-section {
+
+    padding: 75px 0;
+
+    scroll-margin-top: 95px;
+}
+
+
+.added-about {
+
+    background: #f5fbfc;
+}
+
+
+.added-testimonials {
+
+    background: #ffffff;
+}
+
+
+.added-team {
+
+    background: #f5fbfc;
+}
+
+
+.added-contact {
+
+    background: #ffffff;
+}
+
+
+.added-section-heading {
+
+    max-width: 760px;
+
+    margin-bottom: 35px;
+}
+
+
+.added-section-heading.center {
+
+    text-align: center;
+
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+.added-section-heading h2 {
+
+    font-family: "Manrope", sans-serif;
+
+    color: var(--navy);
+
+    font-size: clamp(28px, 4vw, 42px);
+
+    line-height: 1.15;
+
+    margin-top: 14px;
+
+    letter-spacing: -1px;
+}
+
+
+.added-section-heading p {
+
+    color: var(--muted);
+
+    line-height: 1.75;
+
+    margin-top: 14px;
+
+    font-size: 15px;
+}
+
+
+.added-about-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 18px;
+}
+
+
+.added-info-card {
+
+    background: white;
+
+    border: 1px solid var(--border);
+
+    border-radius: 20px;
+
+    padding: 25px;
+
+    box-shadow: var(--shadow);
+
+    transition:
+        transform .2s ease,
+        box-shadow .2s ease;
+}
+
+
+.added-info-card:hover {
+
+    transform: translateY(-4px);
+
+    box-shadow:
+        0 22px 50px
+        rgba(16, 42, 67, 0.11);
+}
+
+
+.added-card-icon {
+
+    width: 50px;
+
+    height: 50px;
+
+    display: grid;
+
+    place-items: center;
+
+    border-radius: 14px;
+
+    color: white;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--primary),
+            var(--secondary)
+        );
+
+    font-weight: 800;
+
+    margin-bottom: 18px;
+}
+
+
+.added-info-card h3 {
+
+    font-family: "Manrope", sans-serif;
+
+    color: var(--navy);
+
+    font-size: 18px;
+
+    margin-bottom: 8px;
+}
+
+
+.added-info-card p {
+
+    color: var(--muted);
+
+    font-size: 13px;
+
+    line-height: 1.7;
+}
+
+
+/* ==========================================================
+   TESTIMONIALS
+========================================================== */
+
+.testimonial-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 18px;
+}
+
+
+.testimonial-card {
+
+    background: white;
+
+    border: 1px solid var(--border);
+
+    border-radius: 20px;
+
+    padding: 25px;
+
+    box-shadow: var(--shadow);
+}
+
+
+.testimonial-stars {
+
+    color: var(--primary);
+
+    letter-spacing: 3px;
+
+    font-size: 14px;
+
+    margin-bottom: 15px;
+}
+
+
+.testimonial-card > p {
+
+    color: var(--text);
+
+    font-size: 14px;
+
+    line-height: 1.75;
+
+    min-height: 75px;
+}
+
+
+.testimonial-user {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 11px;
+
+    margin-top: 20px;
+
+    padding-top: 15px;
+
+    border-top:
+        1px solid var(--border);
+}
+
+
+.testimonial-avatar {
+
+    width: 40px;
+
+    height: 40px;
+
+    border-radius: 50%;
+
+    display: grid;
+
+    place-items: center;
+
+    color: white;
+
+    font-weight: 800;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--primary),
+            var(--secondary)
+        );
+}
+
+
+.testimonial-user strong {
+
+    display: block;
+
+    color: var(--navy);
+
+    font-size: 13px;
+}
+
+
+.testimonial-user span {
+
+    display: block;
+
+    color: var(--muted);
+
+    font-size: 11px;
+
+    margin-top: 3px;
+}
+
+
+/* ==========================================================
+   TEAM
+========================================================== */
+
+.team-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 18px;
+}
+
+
+.team-card {
+
+    text-align: center;
+
+    background: white;
+
+    border: 1px solid var(--border);
+
+    border-radius: 20px;
+
+    padding: 28px;
+
+    box-shadow: var(--shadow);
+}
+
+
+.team-avatar {
+
+    width: 70px;
+
+    height: 70px;
+
+    margin: 0 auto 16px;
+
+    border-radius: 50%;
+
+    display: grid;
+
+    place-items: center;
+
+    color: white;
+
+    font-size: 18px;
+
+    font-weight: 800;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--primary),
+            var(--secondary)
+        );
+}
+
+
+.team-card h3 {
+
+    font-family: "Manrope", sans-serif;
+
+    color: var(--navy);
+
+    font-size: 17px;
+}
+
+
+.team-card p {
+
+    color: var(--muted);
+
+    font-size: 13px;
+
+    margin-top: 6px;
+}
+
+
+/* ==========================================================
+   CONTACT
+========================================================== */
+
+.contact-card {
+
+    display: grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap: 40px;
+
+    align-items: center;
+
+    background:
+        linear-gradient(
+            135deg,
+            #e7f8f8,
+            #ffffff
+        );
+
+    border: 1px solid var(--border);
+
+    border-radius: 25px;
+
+    padding: 35px;
+
+    box-shadow: var(--shadow);
+
+    scroll-margin-top: 95px;
+}
+
+
+.contact-card h2 {
+
+    font-family: "Manrope", sans-serif;
+
+    color: var(--navy);
+
+    font-size: clamp(26px, 3.5vw, 38px);
+
+    line-height: 1.15;
+
+    margin-top: 15px;
+}
+
+
+.contact-card > div:first-child p {
+
+    color: var(--muted);
+
+    line-height: 1.7;
+
+    font-size: 14px;
+
+    margin-top: 12px;
+
+    max-width: 550px;
+}
+
+
+.contact-details {
+
+    display: grid;
+
+    gap: 12px;
+}
+
+
+.contact-item {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 13px;
+
+    background: white;
+
+    border: 1px solid var(--border);
+
+    border-radius: 15px;
+
+    padding: 15px;
+}
+
+
+.contact-item > span {
+
+    width: 42px;
+
+    height: 42px;
+
+    display: grid;
+
+    place-items: center;
+
+    border-radius: 12px;
+
+    color: var(--primary);
+
+    background: #e7f8f8;
+
+    font-weight: 800;
+}
+
+
+.contact-item strong {
+
+    color: var(--navy);
+
+    font-size: 13px;
+}
+
+
+.contact-item p {
+
+    color: var(--muted);
+
+    font-size: 12px;
+
+    margin-top: 3px;
+}
+
+
+/* ==========================================================
+   FIRST PAGE FOOTER
+========================================================== */
+
+.added-footer {
+
+    background: var(--navy);
+
+    color: white;
+
+    padding: 45px 0 20px;
+
+    scroll-margin-top: 95px;
+}
+
+
+.added-footer-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        1.5fr 1fr 1fr;
+
+    gap: 35px;
+
+    padding-bottom: 30px;
+
+    border-bottom:
+        1px solid
+        rgba(255,255,255,0.12);
+}
+
+
+.added-footer .logo {
+
+    color: white;
+}
+
+
+.added-footer-brand p {
+
+    color:
+        rgba(255,255,255,0.65);
+
+    font-size: 13px;
+
+    line-height: 1.7;
+
+    max-width: 320px;
+
+    margin-top: 12px;
+}
+
+
+.added-footer-column {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 10px;
+}
+
+
+.added-footer-column h3 {
+
+    color: white;
+
+    font-family: "Manrope", sans-serif;
+
+    font-size: 15px;
+
+    margin-bottom: 5px;
+}
+
+
+.added-footer-column a {
+
+    color:
+        rgba(255,255,255,0.65);
+
+    font-size: 13px;
+
+    transition: .2s;
+}
+
+
+.added-footer-column a:hover {
+
+    color: white;
+
+    transform: translateX(2px);
+}
+
+
+.added-footer-bottom {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    gap: 15px;
+
+    padding-top: 20px;
+
+    color:
+        rgba(255,255,255,0.48);
+
+    font-size: 11px;
+}
+
+
+/* ==========================================================
+   RESPONSIVE - ADDED SECTIONS ONLY
+========================================================== */
+
+@media(max-width:980px) {
+
+    .added-about-grid,
+    .testimonial-grid,
+    .team-grid {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+    .contact-card {
+
+        grid-template-columns: 1fr;
+    }
+
+    .added-footer-grid {
+
+        grid-template-columns:
+            1fr 1fr;
+    }
+}
+
+
+@media(max-width:680px) {
+
+    .added-section {
+
+        padding: 55px 0;
+    }
+
+    .added-about-grid,
+    .testimonial-grid,
+    .team-grid {
+
+        grid-template-columns: 1fr;
+    }
+
+    .contact-card {
+
+        padding: 22px;
+    }
+
+    .added-footer-grid {
+
+        grid-template-columns: 1fr;
+
+        gap: 25px;
+    }
+
+    .added-footer-bottom {
+
+        flex-direction: column;
+
+        align-items: flex-start;
+    }
+
+}
+
+
+
+/* MEDISCAN TEAM SECTION - ADD ONLY */
+
+
+/* ============================================================
+   MEDISCAN TEAM SECTION - ADD ONLY
+============================================================ */
+
+.mediscan-team {
+    padding: 65px 0;
+    background: #f5fbfc;
+    scroll-margin-top: 90px;
+}
+
+.team-heading {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 35px;
+}
+
+.team-eyebrow {
+    display: inline-block;
+    color: #087f8c;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    margin-bottom: 12px;
+}
+
+.team-heading h2 {
+    color: #102a43;
+    font-family: "Manrope", sans-serif;
+    font-size: clamp(28px, 4vw, 40px);
+    line-height: 1.2;
+    margin-bottom: 12px;
+}
+
+.team-heading p {
+    color: #6d7b88;
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+
+/* FIVE STUDENTS IN ONE ROW */
+
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 12px;
+    align-items: stretch;
+}
+
+
+/* STUDENT CARD */
+
+.student-card {
+    min-width: 0;
+    padding: 12px;
+    text-align: center;
+    background: #ffffff;
+    border: 1px solid #dce7ea;
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(16, 42, 67, 0.05);
+    transition: transform 0.2s ease;
+}
+
+.student-card:hover {
+    transform: translateY(-3px);
+}
+
+
+/* PHOTO */
+
+.student-photo {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    position: relative;
+    border-radius: 12px;
+    background: #e7f8f8;
+    border: 1px solid #dce7ea;
+}
+
+.student-photo img {
+    display: block;
     width: 100%;
     height: 100%;
     object-fit: cover;
-    display: block;
-    border-radius: inherit;
-    background: #000;
 }
+
+.student-photo img[hidden] {
+    display: none;
+}
+
+.photo-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    color: #52717c;
+    font-size: 11px;
+}
+
+.photo-placeholder[hidden] {
+    display: none;
+}
+
+.photo-plus {
+    display: grid;
+    place-items: center;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: #d1eeee;
+    color: #087f8c;
+    font-size: 25px;
+}
+
+
+/* UPLOAD BUTTON */
+
+.student-upload {
+    display: inline-block;
+    position: relative;
+    margin: 10px 0;
+    padding: 7px 12px;
+    border: 1px solid #0e9693;
+    border-radius: 25px;
+    background: #edfbfa;
+    color: #087f7d;
+    font-size: 11px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.student-upload input {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+}
+
+.student-upload:focus-within {
+    outline: 3px solid #8bd8d5;
+    outline-offset: 3px;
+}
+
+
+/* STUDENT DETAILS */
+
+.student-number {
+    display: block;
+    color: #0e9693;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    margin: 5px 0 8px;
+}
+
+.student-card h3 {
+    color: #102a43;
+    font-family: "Manrope", sans-serif;
+    font-size: 14px;
+    line-height: 1.45;
+    overflow-wrap: anywhere;
+    margin: 0 0 10px;
+}
+
+.student-role {
+    display: inline-block;
+    max-width: 100%;
+    padding: 6px 8px;
+    border-radius: 9px;
+    background: #e6f7f6;
+    color: #087f7d;
+    font-size: 10px;
+    font-weight: 700;
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+}
+
+.student-description {
+    color: #6d7b88;
+    font-size: 11px;
+    line-height: 1.65;
+    margin-top: 12px;
+}
+
+
+/* TABLET: TWO COLUMNS */
+
+@media (max-width: 950px) {
+    .team-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 14px;
+    }
+}
+
+
+/* MOBILE: TWO COLUMNS */
+
+@media (max-width: 600px) {
+    .mediscan-team {
+        padding: 45px 0;
+    }
+
+    .team-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+    }
+
+    .student-card {
+        padding: 10px;
+    }
+
+    .student-card h3 {
+        font-size: 13px;
+    }
+}
+
+
+/* SMALL MOBILE: ONE COLUMN */
+
+@media (max-width: 360px) {
+    .team-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .student-card {
+        transition: none;
+    }
+}
+
+
+
+
+/* MEDISCAN-LINKEDIN-TEAM-CSS */
+
+.mediscan-linkedin-team {
+    margin-top: 18px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border);
+}
+
+.linkedin-team-heading {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 10px;
+}
+
+.linkedin-team-heading strong {
+    color: var(--navy);
+    font-size: 13px;
+}
+
+.linkedin-team-heading span {
+    color: var(--muted);
+    font-size: 11px;
+}
+
+.linkedin-team-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+}
+
+.linkedin-team-link {
+    min-width: 0;
+
+    display: flex;
+    align-items: center;
+
+    gap: 8px;
+
+    padding: 8px 9px;
+
+    border: 1px solid var(--border);
+    border-radius: 10px;
+
+    background: #ffffff;
+
+    color: var(--navy);
+
+    font-size: 11px;
+    font-weight: 700;
+
+    line-height: 1.3;
+
+    transition:
+        border-color .2s ease,
+        color .2s ease,
+        transform .2s ease;
+}
+
+.linkedin-team-link:hover {
+    color: var(--primary);
+    border-color: #b8dadd;
+    transform: translateY(-1px);
+}
+
+.linkedin-icon {
+    flex: 0 0 auto;
+
+    width: 25px;
+    height: 25px;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 6px;
+
+    background: var(--primary);
+    color: #ffffff;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 12px;
+    font-weight: 800;
+}
+
+
+@media(max-width:680px) {
+
+    .linkedin-team-list {
+        grid-template-columns: 1fr;
+    }
+
+    .linkedin-team-heading {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 3px;
+    }
+
+}
+
+/* END MEDISCAN-LINKEDIN-TEAM-CSS */
+
+
+
+
+/* ============================================================
+   MEDISCAN TEAM CONTACT MEMBERS CSS
+============================================================ */
+
+.mediscan-linkedin-team {
+
+    margin-top: 25px;
+
+    padding-top: 20px;
+
+    border-top: 1px solid var(--border);
+
+}
+
+
+/* ------------------------------------------------------------
+   TEAM MEMBER TITLE
+------------------------------------------------------------ */
+
+.linkedin-team-heading {
+
+    display: flex;
+
+    align-items: baseline;
+
+    justify-content: space-between;
+
+    gap: 12px;
+
+    margin-bottom: 14px;
+
+}
+
+
+.linkedin-team-heading strong {
+
+    color: var(--navy);
+
+    font-family: "Manrope", sans-serif;
+
+    font-size: 17px;
+
+}
+
+
+.linkedin-team-heading span {
+
+    color: var(--muted);
+
+    font-size: 11px;
+
+}
+
+
+/* ------------------------------------------------------------
+   FIVE MEMBERS IN ONE ROW
+------------------------------------------------------------ */
+
+.linkedin-team-list {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(5, minmax(0, 1fr));
+
+    gap: 9px;
+
+}
+
+
+/* ------------------------------------------------------------
+   MEMBER CARD
+------------------------------------------------------------ */
+
+.linkedin-member {
+
+    min-width: 0;
+
+    padding: 13px 10px;
+
+    background: #ffffff;
+
+    border: 1px solid var(--border);
+
+    border-radius: 12px;
+
+    transition:
+        transform .2s ease,
+        border-color .2s ease,
+        box-shadow .2s ease;
+
+}
+
+
+.linkedin-member:hover {
+
+    transform: translateY(-2px);
+
+    border-color: var(--primary);
+
+    box-shadow:
+        0 8px 20px rgba(18,57,67,0.08);
+
+}
+
+
+/* ------------------------------------------------------------
+   MEMBER NAME
+------------------------------------------------------------ */
+
+.linkedin-member h3 {
+
+    color: var(--navy);
+
+    font-size: 12px;
+
+    line-height: 1.35;
+
+    margin: 0 0 10px 0;
+
+}
+
+
+/* ------------------------------------------------------------
+   LINKEDIN
+------------------------------------------------------------ */
+
+.linkedin-member .linkedin-profile {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 6px;
+
+    margin-bottom: 8px;
+
+    color: var(--primary);
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    text-decoration: none;
+
+}
+
+
+.linkedin-member .linkedin-profile:hover {
+
+    text-decoration: underline;
+
+}
+
+
+/* ------------------------------------------------------------
+   LINKEDIN ICON
+------------------------------------------------------------ */
+
+.linkedin-icon {
+
+    width: 22px;
+
+    height: 22px;
+
+    flex: 0 0 22px;
+
+    display: grid;
+
+    place-items: center;
+
+    border-radius: 5px;
+
+    background: var(--primary);
+
+    color: #ffffff;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 10px;
+
+    font-weight: 800;
+
+}
+
+
+/* ------------------------------------------------------------
+   EMAIL
+------------------------------------------------------------ */
+
+.linkedin-member .member-email {
+
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 5px;
+
+    color: var(--muted);
+
+    font-size: 9px;
+
+    line-height: 1.35;
+
+    font-weight: 500;
+
+    text-decoration: none;
+
+    word-break: break-word;
+
+}
+
+
+.linkedin-member .member-email:hover {
+
+    color: var(--primary);
+
+}
+
+
+/* ------------------------------------------------------------
+   EMAIL ICON
+------------------------------------------------------------ */
+
+.email-icon {
+
+    flex: 0 0 auto;
+
+    font-size: 11px;
+
+    line-height: 1;
+
+}
+
+
+/* ============================================================
+   RESPONSIVE
+============================================================ */
+
+@media(max-width:1100px) {
+
+    .linkedin-team-list {
+
+        grid-template-columns:
+            repeat(3, minmax(0, 1fr));
+
+    }
+
+}
+
+
+@media(max-width:680px) {
+
+    .linkedin-team-list {
+
+        grid-template-columns: 1fr;
+
+    }
+
+
+    .linkedin-team-heading {
+
+        align-items: flex-start;
+
+        flex-direction: column;
+
+        gap: 3px;
+
+    }
+
+
+    .linkedin-member {
+
+        padding: 15px;
+
+    }
+
+}
+
+
+/* END MEDISCAN TEAM CONTACT MEMBERS CSS */
+
+
+
+
+/* MEDISCAN FINAL CONTACT TEAM LAYOUT */
+
+/* ============================================================
+   MAIN CONTACT CARD
+============================================================ */
+
+.added-contact .contact-card {
+
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 0.85fr)
+        minmax(0, 1.15fr);
+
+    column-gap: 38px;
+
+    row-gap: 28px;
+
+    align-items: start;
+
+}
+
+
+/* ============================================================
+   CONTACT INTRO
+============================================================ */
+
+.added-contact .contact-card > div:first-child {
+
+    min-width: 0;
+
+}
+
+
+.added-contact .contact-card > div:first-child h2 {
+
+    margin-top: 10px;
+
+}
+
+
+.added-contact .contact-card > div:first-child p {
+
+    max-width: 470px;
+
+}
+
+
+/* ============================================================
+   CONTACT DETAILS - RIGHT SIDE
+============================================================ */
+
+.added-contact .contact-details {
+
+    display: grid;
+
+    gap: 10px;
+
+}
+
+
+/* ============================================================
+   TEAM AREA - FULL WIDTH INSIDE SAME CONTACT CARD
+============================================================ */
+
+.added-contact .mediscan-contact-team {
+
+    grid-column: 1 / -1;
+
+    width: 100%;
+
+    margin-top: 2px;
+
+    padding-top: 25px;
+
+    border-top: 1px solid var(--border);
+
+}
+
+
+/* ============================================================
+   TEAM HEADING
+============================================================ */
+
+.contact-team-heading {
+
+    display: flex;
+
+    align-items: flex-end;
+
+    justify-content: space-between;
+
+    gap: 20px;
+
+    margin-bottom: 15px;
+
+}
+
+
+.contact-team-label {
+
+    display: inline-block;
+
+    color: var(--primary);
+
+    font-size: 10px;
+
+    font-weight: 800;
+
+    letter-spacing: 1.2px;
+
+    text-transform: uppercase;
+
+    margin-bottom: 5px;
+
+}
+
+
+.contact-team-heading h3 {
+
+    color: var(--navy);
+
+    font-family: "Manrope", sans-serif;
+
+    font-size: 20px;
+
+    line-height: 1.2;
+
+    margin: 0;
+
+}
+
+
+.contact-team-heading p {
+
+    color: var(--muted);
+
+    font-size: 11px;
+
+    margin: 5px 0 0 0;
+
+}
+
+
+.contact-team-note {
+
+    color: var(--muted);
+
+    font-size: 10px;
+
+    white-space: nowrap;
+
+}
+
+
+/* ============================================================
+   FIVE TEAM MEMBERS - ONE ROW
+============================================================ */
+
+.contact-team-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(5, minmax(0, 1fr));
+
+    gap: 10px;
+
+    width: 100%;
+
+}
+
+
+/* ============================================================
+   TEAM MEMBER CARD
+============================================================ */
+
+.contact-team-member {
+
+    min-width: 0;
+
+    min-height: 225px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    justify-content: flex-start;
+
+    padding: 14px 12px;
+
+    background: rgba(255,255,255,0.96);
+
+    border: 1px solid var(--border);
+
+    border-radius: 14px;
+
+    box-shadow:
+        0 4px 14px rgba(18,57,67,0.05);
+
+    transition:
+        transform .2s ease,
+        border-color .2s ease,
+        box-shadow .2s ease;
+
+}
+
+
+.contact-team-photo {
+
+    width: 72px;
+
+    height: 72px;
+
+    flex: 0 0 72px;
+
+    margin: 0 auto 12px;
+
+    border: 2px solid var(--border);
+
+    border-radius: 50%;
+
+    object-fit: cover;
+
+    object-position: center;
+
+}
+
+
+.contact-team-member:hover {
+
+    transform: translateY(-3px);
+
+    border-color: var(--primary);
+
+    box-shadow:
+        0 9px 22px rgba(18,57,67,0.10);
+
+}
+
+
+/* ============================================================
+   TEAM MEMBER NAME
+============================================================ */
+
+.contact-team-member h4 {
+
+    color: var(--navy);
+
+    font-size: 12px;
+
+    line-height: 1.35;
+
+    margin: 0 0 11px 0;
+
+    min-height: 32px;
+
+}
+
+
+/* ============================================================
+   LINKEDIN
+============================================================ */
+
+.contact-linkedin {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 6px;
+
+    width: fit-content;
+
+    max-width: 100%;
+
+    color: var(--primary);
+
+    font-size: 9.5px;
+
+    font-weight: 800;
+
+    text-decoration: none;
+
+    margin-bottom: 9px;
+
+}
+
+
+.contact-linkedin:hover {
+
+    text-decoration: underline;
+
+}
+
+
+/* ============================================================
+   LINKEDIN ICON
+============================================================ */
+
+.contact-linkedin-icon {
+
+    width: 22px;
+
+    height: 22px;
+
+    flex: 0 0 22px;
+
+    display: grid;
+
+    place-items: center;
+
+    border-radius: 5px;
+
+    background: var(--primary);
+
+    color: #ffffff;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 10px;
+
+    font-weight: 800;
+
+}
+
+
+/* ============================================================
+   EMAIL
+============================================================ */
+
+.contact-email {
+
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 5px;
+
+    color: var(--muted);
+
+    font-size: 8.5px;
+
+    line-height: 1.4;
+
+    font-weight: 600;
+
+    text-decoration: none;
+
+    word-break: break-word;
+
+    overflow-wrap: anywhere;
+
+}
+
+
+.contact-email:hover {
+
+    color: var(--primary);
+
+}
+
+
+/* ============================================================
+   RESPONSIVE - TABLET
+============================================================ */
+
+@media(max-width:1100px) {
+
+    .contact-team-grid {
+
+        grid-template-columns:
+            repeat(3, minmax(0, 1fr));
+
+    }
+
+}
+
+
+/* ============================================================
+   RESPONSIVE - MOBILE
+============================================================ */
+
+@media(max-width:980px) {
+
+    .added-contact .contact-card {
+
+        grid-template-columns: 1fr;
+
+        gap: 25px;
+
+    }
+
+    .added-contact .mediscan-contact-team {
+
+        grid-column: 1;
+
+    }
+
+}
+
+
+@media(max-width:680px) {
+
+    .contact-team-heading {
+
+        align-items: flex-start;
+
+        flex-direction: column;
+
+        gap: 5px;
+
+    }
+
+
+    .contact-team-note {
+
+        white-space: normal;
+
+    }
+
+
+    .contact-team-grid {
+
+        grid-template-columns: 1fr;
+
+    }
+
+
+    .contact-team-member {
+
+        min-height: auto;
+
+        padding: 15px;
+
+    }
+
+
+    .contact-team-member h4 {
+
+        min-height: auto;
+
+    }
+
+}
+
+
+/* END MEDIScan FINAL CONTACT TEAM LAYOUT */
