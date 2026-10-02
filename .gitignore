@@ -1,0 +1,31 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Log files
+*.log
+
+# Caches
+.cache/
+cache_*.npz
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+env/
+
+# Uploaded temporary files
+backend/uploads/*.png
+backend/uploads/*.jpg
+backend/uploads/*.jpeg
+backend/uploads/*.pdf
+backend/uploads/*.webp
+!backend/uploads/.gitkeep
+
+# Operating system / IDE files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

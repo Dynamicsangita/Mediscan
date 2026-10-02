@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>MediScan | Prescription Digitizer</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<div id="app"></div>
+
+<!-- Camera Modal -->
+<div id="cameraModal" class="modal">
+    <div class="camera-box">
+
+        <div class="modal-header">
+            <div>
+                <h2>Capture Prescription</h2>
+                <p>Place the complete prescription inside the camera frame.</p>
+            </div>
+
+            <button id="closeCamera" class="close-btn">×</button>
+        </div>
+
+        <video id="cameraVideo" autoplay playsinline></video>
+
+        <div class="camera-actions">
+            <button id="captureBtn" class="primary-btn">
+                📷 Capture Photo
+            </button>
+
+            <button id="cancelCamera" class="secondary-btn">
+                Cancel
+            </button>
+        </div>
+
+    </div>
+</div>
+
+<!-- Toast -->
+<div id="toast" class="toast"></div>
+
+<script src="script.js?v=2"></script>
+
+</body>
+</html>
