@@ -195,8 +195,18 @@ function Header() {
 
                 </a>
 
+                <button
+                    class="mobile-nav-toggle"
+                    type="button"
+                    aria-label="Open navigation menu"
+                    aria-expanded="false"
+                    aria-controls="siteNavigation"
+                    onclick="toggleMobileNavigation(this)"
+                >
+                    <span class="mobile-nav-icon" aria-hidden="true"></span>
+                </button>
 
-                <nav class="navigation">
+                <nav class="navigation" id="siteNavigation">
 
                     <button
                         class="nav-btn"
@@ -315,6 +325,7 @@ function Footer() {
 // ============================================================
 
 function navigateToSection(sectionId) {
+    closeMobileNavigation();
 
     // If currently on result page, return to the first page first.
     if (state.page !== "upload") {
@@ -351,6 +362,28 @@ function navigateToSection(sectionId) {
         });
 
     }
+}
+
+function toggleMobileNavigation(button) {
+    const navigation = document.getElementById("siteNavigation");
+    if (!navigation) return;
+
+    const isOpen = navigation.classList.toggle("is-open");
+    button.setAttribute("aria-expanded", String(isOpen));
+    button.setAttribute(
+        "aria-label",
+        isOpen ? "Close navigation menu" : "Open navigation menu"
+    );
+}
+
+function closeMobileNavigation() {
+    const navigation = document.getElementById("siteNavigation");
+    const toggle = document.querySelector(".mobile-nav-toggle");
+    if (!navigation || !toggle) return;
+
+    navigation.classList.remove("is-open");
+    toggle.setAttribute("aria-expanded", "false");
+    toggle.setAttribute("aria-label", "Open navigation menu");
 }
 
 
@@ -1135,29 +1168,38 @@ function AIVideo() {
 
     return `
 
-    <section class="home-section">
+        <div class="ai-video">
 
-    <!-- EXISTING LEFT SIDE CONTENT -->
-    <div class="home-left">
+            <div class="video-screen">
 
-    <!-- NEW RIGHT SIDE VIDEO -->
-    <div class="home-right-video">
+                <video
+                    class="medi-scan-video"
+                    autoplay
+                    muted
+                    loop
+                    playsinline
+                    preload="metadata"
+                >
+                    <source src="mediscan_video.mp4" type="video/mp4">
+                </video>
 
-        <video
-            class="mediscan-home-video"
-            autoplay
-            muted
-            loop
-            playsinline
-            preload="auto">
+                <div class="ai-label">
+                    <span class="ai-dot"></span>
+                    AI Video
+                </div>
 
-            <source src="mediscan_video.mp4" type="video/mp4">
+                <div class="ai-video-text">
+                    <h3>Scan → Read → Digitize</h3>
+                    <p>
+                        AI-assisted scanning visual for
+                        the MediScan pharmacy workflow.
+                    </p>
+                </div>
 
-        </video>
+            </div>
 
-    </div>
+        </div>
 
-</section>
     `;
 }
 

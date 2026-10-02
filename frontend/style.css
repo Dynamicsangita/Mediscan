@@ -152,6 +152,59 @@ a {
     gap: 8px;
 }
 
+.mobile-nav-toggle {
+    display: none;
+
+    width: 42px;
+
+    height: 42px;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border: 1px solid var(--border);
+
+    border-radius: 12px;
+
+    background: #ffffff;
+
+    color: var(--navy);
+}
+
+.mobile-nav-icon,
+.mobile-nav-icon::before,
+.mobile-nav-icon::after {
+    width: 18px;
+
+    height: 2px;
+
+    border-radius: 2px;
+
+    background: currentColor;
+}
+
+.mobile-nav-icon {
+    position: relative;
+}
+
+.mobile-nav-icon::before,
+.mobile-nav-icon::after {
+    position: absolute;
+
+    left: 0;
+
+    content: "";
+}
+
+.mobile-nav-icon::before {
+    top: -6px;
+}
+
+.mobile-nav-icon::after {
+    top: 6px;
+}
+
 .nav-btn {
     border: none;
 
@@ -384,142 +437,106 @@ a {
    AI VIDEO
 ========================= */
 
-/* =========================================
-   MEDISCAN HOME PAGE - RIGHT SIDE VIDEO
-   ========================================= */
+/* HERO VIDEO CARD */
 
-.home-section {
-    width: 100%;
-    min-height: calc(100vh - 80px);
+.ai-video {
+    width: min(100%, 280px);
 
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    aspect-ratio: 9 / 16;
 
-    padding: 70px 6%;
-    gap: 50px;
+    min-height: 0;
 
-    box-sizing: border-box;
-}
+    justify-self: end;
 
+    padding: 14px;
 
-/* LEFT SIDE - EXISTING CONTENT */
+    border-radius: 30px;
 
-.home-left {
-    width: 150%;
-    max-width: 650px;
-    z-index: 2;
-}
+    background: white;
 
+    border: 1px solid var(--border);
 
-/* RIGHT SIDE VIDEO */
-
-.home-right-video {
-    width: 80%;
-    height: 500px;
+    box-shadow: var(--shadow);
 
     display: flex;
-    align-items: center;
-    justify-content: center;
+}
+
+.video-screen {
+    flex: 1;
+
+    height: auto;
+
+    min-height: 0;
+
+    border-radius: 23px;
 
     overflow: hidden;
-    border-radius: 28px;
 
     position: relative;
 
-    background: #eaf8f8;
-
-    box-shadow:
-        0 20px 50px rgba(0, 80, 90, 0.15);
+    background:
+        linear-gradient(
+            rgba(4,67,76,0.18),
+            rgba(4,67,76,0.55)
+        ),
+        linear-gradient(
+            135deg,
+            #dff9f8,
+            #edf8f7,
+            #c9e9e8
+        );
 }
 
-
-/* VIDEO */
-
-.mediscan-home-video {
+.medi-scan-video {
     width: 100%;
+
     height: 100%;
 
     object-fit: cover;
 
     display: block;
 
-    border-radius: 28px;
+    border-radius: inherit;
 }
 
-
-/* SOFT OVERLAY FOR PROFESSIONAL LOOK */
-
-.home-right-video::after {
-    content: "";
-
+.ai-label {
     position: absolute;
 
-    inset: 0;
+    top: 22px;
 
-    background: linear-gradient(
-        90deg,
-        rgba(255,255,255,0.05),
-        rgba(0,150,160,0.05)
-    );
+    left: 22px;
 
-    pointer-events: none;
+    display: flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    color: white;
+
+    background: rgba(6,55,63,0.7);
+
+    padding: 8px 12px;
+
+    border-radius: 50px;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    backdrop-filter: blur(8px);
 }
 
+.ai-dot {
+    width: 7px;
 
-/* =========================================
-   TABLET
-   ========================================= */
+    height: 7px;
 
-@media (max-width: 1000px) {
+    border-radius: 50%;
 
-    .home-section {
-        padding: 60px 5%;
-        gap: 30px;
-    }
+    background: #74f2d7;
 
-    .home-left {
-        width: 50%;
-    }
-
-    .home-right-video {
-        width: 50%;
-        height: 430px;
-    }
-}
-
-
-/* =========================================
-   MOBILE
-   ========================================= */
-
-@media (max-width: 768px) {
-
-    .home-section {
-        flex-direction: column;
-
-        padding: 50px 6%;
-
-        min-height: auto;
-    }
-
-    .home-left {
-        width: 100%;
-        max-width: 100%;
-    }
-
-    .home-right-video {
-        width: 100%;
-        height: 350px;
-
-        margin-top: 30px;
-
-        border-radius: 22px;
-    }
-
-    .mediscan-home-video {
-        border-radius: 22px;
-    }
+    animation: pulse 1.5s infinite;
 }
 
 /* Prescription animation */
@@ -1004,6 +1021,10 @@ a {
     align-items: start;
 }
 
+.result-grid > * {
+    min-width: 0;
+}
+
 .image-card,
 .result-card {
     background: white;
@@ -1025,6 +1046,8 @@ a {
 
 .prescription-image {
     width: 100%;
+
+    max-width: 100%;
 
     height: 500px;
 
@@ -1558,11 +1581,17 @@ a {
     }
 
     .ai-video {
-        min-height: 420px;
+        width: min(100%, 320px);
+        aspect-ratio: 9 / 16;
+        min-height: 0;
+        justify-self: center;
+        display: flex;
     }
 
     .video-screen {
-        min-height: 400px;
+        height: auto;
+        min-height: 0;
+        flex: 1;
     }
 
     .prescription-image {
@@ -1581,8 +1610,49 @@ a {
         height: 68px;
     }
 
+    .header-inner {
+        position: relative;
+    }
+
+    .mobile-nav-toggle {
+        display: inline-flex;
+        flex: 0 0 42px;
+    }
+
     .navigation {
         display: none;
+
+        position: absolute;
+
+        top: calc(100% + 1px);
+
+        left: -12px;
+
+        right: -12px;
+
+        padding: 10px 12px 14px;
+
+        flex-direction: column;
+
+        gap: 3px;
+
+        background: rgba(255,255,255,0.98);
+
+        border-bottom: 1px solid var(--border);
+
+        box-shadow: 0 12px 24px rgba(16,42,67,0.12);
+    }
+
+    .navigation.is-open {
+        display: flex;
+    }
+
+    .nav-btn {
+        width: 100%;
+
+        padding: 11px 12px;
+
+        text-align: left;
     }
 
     .logo {
@@ -1616,12 +1686,17 @@ a {
     }
 
     .ai-video {
-        min-height: 370px;
+        min-height: 0;
+        width: min(100%, 280px);
+        aspect-ratio: 9 / 16;
         padding: 9px;
+        display: flex;
     }
 
     .video-screen {
-        min-height: 350px;
+        min-height: 0;
+        height: auto;
+        flex: 1;
     }
 
     .document {
@@ -1672,6 +1747,63 @@ a {
 
     .footer-links {
         flex-wrap: wrap;
+    }
+}
+
+@media(max-width:380px) {
+
+    .hero h1 {
+        font-size: 34px;
+        letter-spacing: -1px;
+    }
+
+    .hero-actions {
+        gap: 9px;
+    }
+
+    .ai-video-text {
+        left: 16px;
+        right: 16px;
+        bottom: 16px;
+    }
+
+    .ai-video-text h3 {
+        font-size: 19px;
+    }
+
+    .ai-video-text p {
+        font-size: 11px;
+    }
+
+    .modal {
+        padding: 10px;
+        align-items: flex-start;
+        overflow-y: auto;
+    }
+
+    .camera-box {
+        margin: auto 0;
+        padding: 16px;
+    }
+
+    .camera-actions {
+        flex-direction: column;
+    }
+}
+
+@media(max-width:900px) and (max-height:500px) {
+
+    .modal {
+        align-items: flex-start;
+        overflow-y: auto;
+    }
+
+    .camera-box {
+        margin: auto 0;
+    }
+
+    #cameraVideo {
+        max-height: 45vh;
     }
 }
 
@@ -2540,9 +2672,9 @@ a {
 }
 
 
-/* TABLET: TWO COLUMNS */
+/* TABLET: THREE COLUMNS */
 
-@media (max-width: 950px) {
+@media (max-width: 1100px) {
     .team-grid {
         grid-template-columns: repeat(3, minmax(0, 1fr));
         gap: 14px;
